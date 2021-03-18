@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app-2">
+        <span v-bind:title="message">
+            鼠标悬停几秒钟查看此处动态绑定的提示信息！
+        </span>
+        <p v-if="seen">
+            看到我啦！
+        </p>
+
+        <!-- 循环 -->
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+
+        <!-- 反转消息 -->
+        <p>{{ reversep }}</p>
+        <button v-on:click="reverse">reverse</button>
+
+        <!-- HTML -->
+        <p>Using mustaches: {{ rawHtml }}</p>
+        <p>Using v-html directive:
+            <span v-html='rawHtml'></span>
+        </p>
+
+        <!-- Attribute -->
+        <div v-bind:id="abc">ABC</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app2 = new Vue({
+            el: '#app-2',
+            data: {
+                message: '页面加载与' + new Date().toLocaleString(),
+                seen:true,
+                todos: [
+                    { text: 'a' },
+                    { text: 'b' },
+                    { text: 'c' }
+                ],
+                reversep: '反转消息',
+                rawHtml: '<span style="color:red">RED</span>'
+            },
+            methods: {
+                reverse: function() {
+                    this.reversep = this.reversep.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
